@@ -152,7 +152,7 @@
       display: flex;
       align-items: flex-end;
       padding: 0 var(--pad-x);
-      padding-bottom: clamp(32px, 5vw, 64px);
+      padding-bottom: clamp(100px, 12vh, 140px); /* Leave room for fixed footer */
     }
 
     .hero-content {
@@ -471,12 +471,12 @@
 
     .form-trust {
       font-family: var(--text);
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.08em;
       color: var(--gun-metal);
       margin-top: 20px;
-      max-width: 480px;
+      max-width: 600px;
       line-height: 1.6;
       animation: fadeUp 0.9s 1.8s ease-out backwards;
     }
@@ -750,13 +750,16 @@
 
     /* ============ Bottom feature bar ============ */
     .feature-bar {
-      position: relative;
-      z-index: 5;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
       background: rgba(10, 10, 10, 0.92);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       border-top: 1px solid var(--gun-metal-dim);
-      padding: 22px var(--pad-x) clamp(32px, 4vw, 48px) var(--pad-x);
+      padding: 22px var(--pad-x) clamp(24px, 3vh, 36px) var(--pad-x);
       animation: fadeUp 0.9s 1.8s ease-out backwards;
     }
 
@@ -810,6 +813,17 @@
       font-weight: 400;
       color: var(--gun-metal);
       line-height: 1.3;
+    }
+
+    /* Feature bar mobile behavior */
+    @media (max-width: 1024px) {
+      .feature-bar {
+        position: relative;
+        padding-bottom: 32px;
+      }
+      .hero {
+        padding-bottom: 64px;
+      }
     }
 
     /* ============ Mobile Menu Overlay ============ */
