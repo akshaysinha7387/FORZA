@@ -756,7 +756,7 @@
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       border-top: 1px solid var(--gun-metal-dim);
-      padding: 22px var(--pad-x);
+      padding: 22px var(--pad-x) clamp(32px, 4vw, 48px) var(--pad-x);
       animation: fadeUp 0.9s 1.8s ease-out backwards;
     }
 
