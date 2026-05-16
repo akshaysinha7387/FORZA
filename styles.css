@@ -152,7 +152,7 @@
       display: flex;
       align-items: flex-end;
       padding: 0 var(--pad-x);
-      padding-bottom: clamp(100px, 12vh, 140px); /* Leave room for fixed footer */
+      padding-bottom: clamp(24px, 4vh, 64px);
     }
 
     .hero-content {
@@ -164,13 +164,13 @@
     /* Giant FORZA wordmark */
     .hero-title {
       font-family: var(--display);
-      font-size: clamp(96px, 19vw, 360px);
+      font-size: min(19vw, 28vh);
       line-height: 0.82;
       letter-spacing: -0.015em;
       color: var(--chalk);
       text-transform: uppercase;
       width: 60%;
-      margin-bottom: clamp(20px, 3vw, 40px);
+      margin-bottom: clamp(12px, 2.5vh, 40px);
       animation: titleRise 1.2s 0.5s cubic-bezier(0.22, 1, 0.36, 1) backwards;
     }
 
@@ -750,11 +750,8 @@
 
     /* ============ Bottom feature bar ============ */
     .feature-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      z-index: 50;
+      position: relative;
+      z-index: 5;
       background: rgba(10, 10, 10, 0.92);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
@@ -818,12 +815,17 @@
     /* Feature bar mobile behavior */
     @media (max-width: 1024px) {
       .feature-bar {
-        position: relative;
         padding-bottom: 32px;
       }
-      .hero {
-        padding-bottom: 64px;
-      }
+    }
+
+    /* Short laptop screen compression to prevent scrolling */
+    @media (max-height: 800px) and (min-width: 1025px) {
+      .hero-title { font-size: min(18vw, 24vh); margin-bottom: 12px; }
+      .hero-promise { font-size: 22px; margin-bottom: 16px; }
+      .domain { margin-bottom: 24px; }
+      .form-trust { margin-top: 12px; }
+      .feature-bar { padding: 16px var(--pad-x) 20px var(--pad-x); }
     }
 
     /* ============ Mobile Menu Overlay ============ */
