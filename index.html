@@ -224,10 +224,10 @@
     const SUPABASE_ANON_KEY = 'sb_publishable_vbt7OoX6tCITYpb6SBMTKw_7vh51yQP';
     // ====================================================
 
-    let supabase = null;
+    let supabaseClient = null;
     try {
       if (SUPABASE_URL !== 'YOUR_SUPABASE_PROJECT_URL' && window.supabase) {
-        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       }
     } catch(err) {
       console.error('Supabase init failed:', err);
@@ -317,7 +317,7 @@
       submitBtn.classList.remove('success');
 
       try {
-        if (!supabase) {
+        if (!supabaseClient) {
           // Fallback for testing before Supabase is configured
           await new Promise(r => setTimeout(r, 800));
           console.log('Captured (test mode):', { email, phone: phone ? '+91' + phone : null });
@@ -328,7 +328,7 @@
         const insertData = { email: email };
         if (phone) insertData.phone = '+91' + phone;
 
-        const { error } = await supabase
+        const { error } = await supabaseClient
           .from('waitlist')
           .insert([insertData]);
 
