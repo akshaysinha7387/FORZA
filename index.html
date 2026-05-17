@@ -113,7 +113,7 @@
       <div class="launching">Launching Soon</div>
       <div class="domain">forzasport.in</div>
 
-      <form id="notify" class="form-wrap" onsubmit="handleSubmit(event)">
+      <form id="notify" class="form-wrap" onsubmit="handleSubmit(event); return false;">
         <div class="phone-row">
           <div class="country-code">+91</div>
           <input
@@ -318,7 +318,7 @@
           return;
         }
 
-        const insertData = { email: email, source: 'coming_soon' };
+        const insertData = { email: email };
         if (phone) insertData.phone = '+91' + phone;
 
         const { error } = await supabase
