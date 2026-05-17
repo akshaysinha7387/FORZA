@@ -113,7 +113,7 @@
       <div class="launching">Launching Soon</div>
       <div class="domain">forzasport.in</div>
 
-      <form id="notify" class="form-wrap" onsubmit="handleSubmit(event); return false;">
+      <form id="notify" class="form-wrap" action="javascript:void(0);">
         <div class="phone-row">
           <div class="country-code">+91</div>
           <input
@@ -225,8 +225,12 @@
     // ====================================================
 
     let supabase = null;
-    if (SUPABASE_URL !== 'YOUR_SUPABASE_PROJECT_URL' && window.supabase) {
-      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    try {
+      if (SUPABASE_URL !== 'YOUR_SUPABASE_PROJECT_URL' && window.supabase) {
+        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      }
+    } catch(err) {
+      console.error('Supabase init failed:', err);
     }
 
     // ============ Menu ============
@@ -274,8 +278,11 @@
       this.value = this.value.replace(/\D/g, '').slice(0, 10);
     });
 
+    document.getElementById('notify').addEventListener('submit', handleSubmit);
+
     async function handleSubmit(e) {
       e.preventDefault();
+      e.stopPropagation();
       const emailInput = document.getElementById('email');
       const phoneInput = document.getElementById('phone');
       const submitBtn = document.getElementById('submitBtn');
